@@ -31,10 +31,13 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Button startButton = new Button("Start Game");
-        startButton.setFont(new Font(70));
-        startButton.setTextFill(Color.BLACK);
+        Button exitButton = new Button("Exit Game");
+        startButton.setFont(new Font(45));
+        startButton.setLayoutX(750);
+        startButton.setLayoutY(375);
+        startButton.setTextFill(Color.WHITE);
         firstGroup.getChildren().add(startButton);
-        Scene firstScene = new Scene(firstGroup, 1850, 900, Color.WHITE);
+        Scene firstScene = new Scene(firstGroup, 1850, 900, Color.BLACK);
         stage.setTitle("Game");
         stage.setScene(firstScene);
         stage.show();
