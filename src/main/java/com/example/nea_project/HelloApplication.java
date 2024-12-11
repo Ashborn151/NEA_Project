@@ -10,16 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -79,7 +76,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Game"); //sets the title of the scene as "Game"
         stage.setScene(firstScene); //sets the scene firstScene
         stage.show(); //displays firstScene on the display
-        stage.setFullScreen(true);
+//        stage.setFullScreen(true);
 
 
 
@@ -89,17 +86,18 @@ public class HelloApplication extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 secondGroup.getChildren().add(text);
-                text.setText("gybeiv");
-                text.setX(855);
-                text.setY(400);
+                text.setTextAlignment(TextAlignment.CENTER);
+                text.setText("About \n This game is a sidescroller game similar to popular games such as Hollow Knight and Cuphead. \nYou will fight against several enemies and bosses that will test your skills to dodge against enemy attacks, \ndodge any obstacles while also dealing damage to the enemies and defeating them.\n\n Controls:\nA - move left\nD - move right\nMouse Right Click - attack\nSpace - jump\nESC - exit menu");
+                text.setX(300);
+                text.setY(200);
                 text.setFill(Color.WHITE);
-                text.setFont(new Font(20));
+                text.setFont(new Font(30));
 
                 Scene secondScene = new Scene(secondGroup, 1920, 1000, Color.BLACK);
                 stage.setTitle("Game2");
                 stage.setScene(secondScene);
                 stage.show();
-                stage.setFullScreen(true);
+//                stage.setFullScreen(true);
 
             }
         };
