@@ -35,7 +35,9 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         Text text = new Text();
         Button startButton = new Button("Start Game"); //creates button with label startButton and it displays Start Game
+        startButton.setStyle("-fx-background-color: white; -fx-cursor: hand ");
         Button exitButton = new Button("Exit Game"); //creates button with label exitButton and it displays Exit Game
+        exitButton.setStyle("-fx-background-color: white; -fx-cursor: hand ");
 
         text.setText("Game"); //sets the text to display the word "Game" on the screen
         text.setX(855);
@@ -47,13 +49,27 @@ public class HelloApplication extends Application {
         startButton.setMinWidth(300); //sets a width of 300 to the button
         startButton.setLayoutX(855);
         startButton.setLayoutY(455); //setX and setY set the position of the startButton on the scene by placing the button at position 855 on the x coordinate and 455 on the y coordinate
-        startButton.setTextFill(Color.WHITE); //sets the colour of the text of Start Game to white
+        startButton.setTextFill(Color.BLACK); //sets the colour of the text of Start Game to white
+        startButton.setOnMouseEntered(mouseEvent -> {
+            startButton.setStyle("-fx-background-color: cyan");
+        });
+        startButton.setOnMouseExited(mouseEvent -> {
+            startButton.setStyle("-fx-background-color: white");
+        });
+
+
 
         exitButton.setFont(new Font(45)); //sets the font of Exit Game to 45
         exitButton.setMinWidth(300); //sets a width of 300 to the button
         exitButton.setLayoutX(855);
         exitButton.setLayoutY(570); //setX and setY set the position of the exitButton on the scene by placing the button at position 855 on the x coordinate and 570 on the y coordinate
-        exitButton.setTextFill(Color.WHITE); //sets the colour of the text of Exit Game to white
+        exitButton.setTextFill(Color.BLACK); //sets the colour of the text of Exit Game to white
+        exitButton.setOnMouseEntered(mouseEvent -> {
+            exitButton.setStyle("-fx-background-color: cyan");
+        });
+        exitButton.setOnMouseExited(mouseEvent -> {
+            exitButton.setStyle("-fx-background-color: white");
+        });
 
         firstGroup.getChildren().add(startButton);
         firstGroup.getChildren().add(exitButton);
@@ -63,12 +79,13 @@ public class HelloApplication extends Application {
         stage.setTitle("Game"); //sets the title of the scene as "Game"
         stage.setScene(firstScene); //sets the scene firstScene
         stage.show(); //displays firstScene on the display
+        stage.setFullScreen(true);
 
 
 
 
 
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { //creates an event that opens a new window while closing the current window
             @Override
             public void handle(ActionEvent actionEvent) {
                 secondGroup.getChildren().add(text);
@@ -82,11 +99,12 @@ public class HelloApplication extends Application {
                 stage.setTitle("Game2");
                 stage.setScene(secondScene);
                 stage.show();
+                stage.setFullScreen(true);
 
             }
         };
 
-        startButton.setOnAction(event);
+        startButton.setOnAction(event); //ties the event to this startButton so that the window is opened when the button is clicked
 
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             @Override
