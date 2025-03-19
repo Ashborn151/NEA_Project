@@ -1,6 +1,6 @@
 package com.example.nea_project;
 
-import javafx.geometry.Pos;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +14,7 @@ public class difficultyScene {
     private final Stage stage;
     private final Scene firstScene;
     private final Scene secondScene;
+    public boolean flag = true;
 
     public difficultyScene(Stage stage, Scene firstScene, Scene secondScene) {
         this.stage = stage;
@@ -44,11 +45,21 @@ public class difficultyScene {
         stage.show(); //displays firstScene on the display
         stage.setMaximized(true);
 
-        mainGame Page3 = new mainGame(stage, firstScene, secondScene, thirdScene);
+        LevelOne levelOne = new LevelOne();
 
-        NeutralDiff.setOnAction(e -> Page3.showmainGame());
-        ChallengingDiff.setOnAction(e -> Page3.showmainGame());
-        ChaoticDiff.setOnAction(e -> Page3.showmainGame());
+
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if((NeutralDiff.isPressed() || ChallengingDiff.isPressed() || ChaoticDiff.isPressed()) && flag){
+                    flag = false;
+                    levelOne.showLevelOne();
+                    stage.close();
+                }
+            }
+        };
+        timer.start();
 
 
 

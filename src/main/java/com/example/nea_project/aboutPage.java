@@ -1,27 +1,12 @@
 package com.example.nea_project;
 
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.scene.shape.Circle;
-import java.util.ArrayList;
-import java.util.List;
 
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class aboutPage {
     private final Stage stage;
@@ -45,25 +30,28 @@ public class aboutPage {
         text2.setY(200);
         text2.setFill(Color.WHITE);
         text2.setFont(new Font(30));
+        Button nextButton = createButton("Choose difficulty", 1500, 900);
 
-        secondGroup.getChildren().add(text2);
+        secondGroup.getChildren().addAll(text2, nextButton);
 
         Scene secondScene = new Scene(secondGroup, 1920, 1080, Color.BLACK);
         stage.setScene(secondScene);
         stage.setTitle("Game Details");
         stage.setMaximized(true);
 
-        difficultyScene Page2 = new difficultyScene(stage, firstScene, secondScene);
 
-        Timer myTime = new Timer();
-        myTime.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    Page2.showdifficultyScene();
-                });
-            }
-        },3000);
+        difficultyScene Page2 = new difficultyScene(stage, firstScene, secondScene);
+        nextButton.setOnAction(e -> Page2.showdifficultyScene());
+
+//        Timer myTime = new Timer();
+//        myTime.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//                    Page2.showdifficultyScene();
+//                });
+//            }
+//        },3000);
 
 //        secondScene.setOnKeyPressed(keyEvent -> {
 //            if (keyEvent.getCode() == KeyCode.ESCAPE) {
@@ -71,6 +59,21 @@ public class aboutPage {
 //                stage.setTitle("Game");
 //            }
 //        });
+    }
+
+    private Button createButton(String text, double x, double y) {
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: white; -fx-cursor: hand");
+        button.setFont(new Font(45));
+        button.setMinWidth(300);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setTextFill(Color.BLACK);
+
+        button.setOnMouseEntered(mouseEvent -> button.setStyle("-fx-background-color: cyan"));
+        button.setOnMouseExited(mouseEvent -> button.setStyle("-fx-background-color: white"));
+
+        return button;
     }
 }
 
